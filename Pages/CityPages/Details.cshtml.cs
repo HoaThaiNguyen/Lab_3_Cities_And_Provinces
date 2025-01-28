@@ -28,8 +28,7 @@ namespace CommunityApp_Lab3.Pages_CityPages
                 return NotFound();
             }
 
-            var city = await _context.Cities.FirstOrDefaultAsync(m => m.CityId == id);
-
+            var city = await _context.Cities!.Include(p => p.Province).FirstOrDefaultAsync(m => m.CityId == id);
             if (city is not null)
             {
                 City = city;
